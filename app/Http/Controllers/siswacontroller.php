@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\siswa;
+use Illuminate\Support\Facades\DB;
 
 class siswacontroller extends Controller
 {
@@ -13,8 +15,8 @@ class siswacontroller extends Controller
      */
     public function index()
     {
-        return "ini adalah index";
-        //untuk menampilkan view data
+        $getSiswa = DB::table('siswa')->get();
+        return view('viewData', compact('getSiswa'));
     }
 
     /**
@@ -24,7 +26,7 @@ class siswacontroller extends Controller
      */
     public function create()
     {
-        //
+        return view('data');
     }
 
     /**
@@ -35,7 +37,12 @@ class siswacontroller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //mass assigment
+        siswa::create($request->all());
+        //dd($request->all());
+        return redirect()->back();
+        // return redirect()->back();
+        // return redirect()->back();
     }
 
     /**
@@ -57,7 +64,9 @@ class siswacontroller extends Controller
      */
     public function edit($id)
     {
-        //
+        $siswa = Siswa::find($id);
+
+        return view('editData', compact('siswa'));
     }
 
     /**
@@ -69,7 +78,8 @@ class siswacontroller extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Siswa::updateOrcreate(['id' => $id], $request->all());
+        return redirect(route('viewData'));
     }
 
     /**
@@ -80,6 +90,8 @@ class siswacontroller extends Controller
      */
     public function destroy($id)
     {
-        //
+        $siswa = Siswa::find($id);
+        $siswa->delete();
+        return redirect(route('viewData'));
     }
 }

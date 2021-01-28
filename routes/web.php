@@ -16,10 +16,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 });
-
 Route::get('/about', function () {
     return view('about');
 });
+Route::get('/data', 'siswacontroller@create');
+Route::post('/data', 'siswacontroller@store');
+Route::get('/viewdata', 'siswacontroller@index')-> name('viewData');
+Route::get('/data/{id}/edit', 'siswacontroller@edit') -> name('editData');
+Route::post('/data/{id}/update', 'siswacontroller@update') -> name('updateData'); 
+Route::get('/data/{id}/delete', 'siswacontroller@destroy') -> name('deleteData');
 
 //closure
 // Route::get('/profil', function() {
