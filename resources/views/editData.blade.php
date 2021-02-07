@@ -9,8 +9,8 @@
 	      <input value="{{ $siswa->nama }}" type="text" name="nama" class="form-control" id="nama" placeholder="Masukkan nama">
 	    </div>
 	    <div class="form-group">
-	      <label for="telpon">Telpon</label>
-	      <input value="{{ $siswa->telepon }}" type="text" name="telepon" class="form-control" id="telpon" placeholder="Masukkan nomor telpon">
+	      <label for="telepon">Telepon</label>
+	      <input value="{{ $siswa->telepon }}" type="text" name="telepon" class="form-control" id="telepon" placeholder="Masukkan nomor telpon">
 	    </div>
 	    <div class="form-group">
 	      <label for="alamat">Alamat</label>

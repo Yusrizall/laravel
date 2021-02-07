@@ -37,6 +37,11 @@ class siswacontroller extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'nama' => 'required',
+            'telepon' => 'required|numeric|digits_between:11,12',
+            'alamat' => 'required'
+        ]);
         //mass assigment
         siswa::create($request->all());
         //dd($request->all());
