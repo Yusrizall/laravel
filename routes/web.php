@@ -15,16 +15,25 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 Route::get('/about', function () {
     return view('about');
 });
-Route::get('/data', 'siswacontroller@create');
-Route::post('/data', 'siswacontroller@store');
-Route::get('/viewdata', 'siswacontroller@index')-> name('viewData');
-Route::get('/data/{id}/edit', 'siswacontroller@edit') -> name('editData');
-Route::post('/data/{id}/update', 'siswacontroller@update') -> name('updateData'); 
-Route::get('/data/{id}/delete', 'siswacontroller@destroy') -> name('deleteData');
+
+Route::get('/login', 'AuthController@login')-> name('login');
+Route::post('/login', 'AuthController@postLogin')-> name('postLogin');
+Route::get('/logout', 'AuthController@logout')-> name('logout');
+
+Route::group(['middleware' => 'auth'], function(){
+	Route::get('/data', 'siswacontroller@create');
+	Route::post('/data', 'siswacontroller@store');
+	Route::get('/viewdata', 'siswacontroller@index')-> name('viewData');
+	Route::get('/data/{id}/edit', 'siswacontroller@edit') -> name('editData');
+	Route::post('/data/{id}/update', 'siswacontroller@update') -> name('updateData'); 
+	Route::get('/data/{id}/delete', 'siswacontroller@destroy') -> name('deleteData');
+});
+
+
 
 //closure
 // Route::get('/profil', function() {
